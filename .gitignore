@@ -50,3 +50,5 @@ coverage/
 .parcel-cache/
 .next/
 out/
+
+uploads/
