@@ -4,6 +4,7 @@ import connectDB from "./config/db.js";
 import userRoutes from "./routes/user.routes.js";
 import postRoutes from "./routes/post.routes.js";
 import boardRoutes from "./routes/board.routes.js";
+import likeRoutes from "./routes/like.routes.js";
 
 dotenv.config();
 connectDB();
@@ -17,6 +18,7 @@ app.use("/uploads", express.static("uploads"));
 app.use("/auth", userRoutes);
 app.use("/posts", postRoutes);
 app.use("/boards", boardRoutes);
+app.use("/likes", likeRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server started on PORT: ${PORT}`);
