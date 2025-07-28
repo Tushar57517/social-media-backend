@@ -83,3 +83,33 @@ export async function logout(req, res) {
     res.status(500).json({ error: "internal server error" });
   }
 }
+
+export async function changePassword(req, res) {
+  const { oldPassword, newPassword } = req.body;
+
+  try {
+    if (!oldPassword || !newPassword)
+      return res.status(400).json({ error: "all fields required" });
+
+    const user = await User.findById(req.userId);
+    if (!user) return res.status(400).json({ error: "user not found" });
+
+    if (oldPassword === newPassword)
+      return res
+        .status(400)
+        .json({ error: "new password cant be same as old password" });
+
+    const passwordMatch = await bcrypt.compare(oldPassword, user.password);
+    if (!passwordMatch)
+      return res.status(400).json({ error: "old password doesn't match" });
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    user.password = hashedPassword;
+    await user.save()
+
+    return res.status(200).json({message:"password updated successfully!"})
+  } catch (error) {
+    res.status(500).json({ error: "internal server error" });
+  }
+}
