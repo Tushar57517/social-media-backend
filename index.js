@@ -1,15 +1,16 @@
 import express from "express";
 import dotenv from "dotenv";
 import morgan from "morgan";
-import connectDB from "./config/db.js";
 import userRoutes from "./routes/user.routes.js";
 import postRoutes from "./routes/post.routes.js";
 import boardRoutes from "./routes/board.routes.js";
 import likeRoutes from "./routes/like.routes.js";
 import commentRoutes from "./routes/comment.routes.js";
 import followRoutes from "./routes/follow.routes.js";
+import connectDB from "./config/db.js";
 
 dotenv.config();
+
 connectDB();
 
 const app = express();
