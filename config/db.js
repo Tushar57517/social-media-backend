@@ -1,7 +1,12 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const isProduction = process.env.PRODUCTION === "true";
-const MONGO_URI = isProduction? process.env.PROD_MONGO_URI : process.env.MONGO_URI
+const MONGO_URI = isProduction
+  ? process.env.PROD_MONGO_URI
+  : process.env.MONGO_URI;
 
 const connectDB = async () => {
   try {

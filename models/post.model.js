@@ -11,6 +11,9 @@ const postSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    publicId: {
+      type: String,
+    },
     caption: {
       type: String,
     },
